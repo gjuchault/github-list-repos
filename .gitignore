@@ -1,5 +1,4 @@
 node_modules/
-client/dist/
 
 # as vue-cli-service will create a .cache directory there
 client/node_modules

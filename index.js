@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
 const GitHubStrategy = require('passport-github2')
+const omit = require('lodash.omit')
 const got = require('got')
 
 const app = express()
@@ -33,7 +34,7 @@ app.use(passport.session())
 
 app.get(
   '/login',
-  passport.authenticate('github', { scope: [ 'read:user' ] })
+  passport.authenticate('github', { scope: [ 'user:email' ] })
 )
 
 app.get('/auth/github/callback', 
@@ -46,12 +47,10 @@ app.get(
   (req, res, next) => { req.isAuthenticated() ? next() : res.status(401).end() },
   async (req, res) => {
     const gh = await got(
-      'https://api.github.com/user/repos',
+      'https://api.github.com/users/wemake-services/repos',
       { json: true, headers: { Authorization: `Bearer ${req.user.accessToken}` }
     })
-    console.log(req.user)
-    console.log(gh)
-    res.json({})
+    res.json({ repos: gh.body, profile: omit(req.user, ['accessToken']) })
   }
 )
 

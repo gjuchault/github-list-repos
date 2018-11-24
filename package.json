@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "cd client && vue-cli-service build",
-    "start": "yarn build && node index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "ky": "^0.5.1",

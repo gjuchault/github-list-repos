@@ -54,6 +54,8 @@ app.get(
   }
 )
 
-app.listen(3000, () => {
-  console.log('github-list-repos listening on port 3000')
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
+  console.log(`github-list-repos listening on port ${port}`)
 })

@@ -7,8 +7,8 @@
   "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "cd client && npm run build && cd ..",
-    "start": "npm run build && node index.js"
+    "build": "cd client && yarn && yarn build && cd ..",
+    "start": "yarn build && node index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

@@ -1,0 +1,15 @@
+{
+  "name": "github-list-repos",
+  "version": "0.1.0",
+  "description": "wemake.services job application",
+  "main": "index.js",
+  "repository": "https://github.com/gjuchault/github-list-repos",
+  "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "passport": "^0.4.0",
+    "passport-github2": "^0.1.11"
+  }
+}

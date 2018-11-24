@@ -6,9 +6,13 @@
   "repository": "https://github.com/gjuchault/github-list-repos",
   "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11"
   }

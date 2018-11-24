@@ -7,10 +7,12 @@
   "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "cd client && yarn && yarn build && cd ..",
+    "build": "cd client && vue-cli-service build",
     "start": "yarn build && node index.js"
   },
   "dependencies": {
+    "ky": "^0.5.1",
+    "vue": "^2.5.17",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
@@ -18,5 +20,20 @@
     "lodash.omit": "^4.5.0",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11"
-  }
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-service": "^3.1.4",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

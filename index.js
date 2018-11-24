@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
 const GitHubStrategy = require('passport-github2')
+const got = require('got')
 
 const app = express()
 
@@ -16,6 +17,8 @@ passport.use(new GitHubStrategy(
     callbackURL: `${process.env.PUBLIC_URL}/auth/github/callback`
   },
   (accessToken, refreshToken, profile, done) => {
+    profile.accessToken = accessToken
+
     process.nextTick(() => done(null, profile))
   })
 )
@@ -38,11 +41,17 @@ app.get('/auth/github/callback',
   (req, res) => res.redirect('/')
 )
 
-app.post(
+app.get(
   '/repos',
-  (req, res, next) => { req.isAuthenticated() ? next() : res.redirect('/') },
-  (req, res) => {
-    res.json({ status: 'ok' })
+  (req, res, next) => { req.isAuthenticated() ? next() : res.status(401).end() },
+  async (req, res) => {
+    const gh = await got(
+      'https://api.github.com/user/repos',
+      { json: true, headers: { Authorization: `Bearer ${req.user.accessToken}` }
+    })
+    console.log(req.user)
+    console.log(gh)
+    res.json({})
   }
 )
 

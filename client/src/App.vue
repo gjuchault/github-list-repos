@@ -5,8 +5,15 @@
 </template>
 
 <script>
+import ky from 'ky'
+
 export default {
-  name: 'app'
+  name: 'app',
+
+  async mounted() {
+    const json = await ky.get('/repos').json()
+    console.log(json)
+  }
 }
 </script>
 
